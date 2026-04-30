@@ -15,65 +15,73 @@ const navLinks = [
 ];
 
 const tradeBenefits = [
-  "Master Crypto without real-money risk",
-  "100% Risk-Free Simulation",
-  "$10,000 Virtual Funds on Sign-up",
+  "Trade like Binance, learn with virtual money",
+  "100% risk-free crypto simulation environment",
+  "$10,000 virtual balance on sign-up",
 ];
 
 const platformFeatures = [
   {
-    title: "Start smaller",
+    title: "Live-like exchange interface",
     description:
-      "Small lot sizes on BTC and ETH contracts make it easy to begin with controlled risk.",
+      "Familiar orderbook, charting, and buy/sell flow inspired by top crypto platforms so learners can train in a realistic setup.",
   },
   {
-    title: "Trade 24/7/365",
+    title: "24/7 virtual crypto market practice",
     description:
-      "Virtual markets stay open around the clock, matching the real crypto market rhythm.",
+      "Practice anytime with market behavior that mirrors real crypto volatility and continuous market timing.",
   },
   {
-    title: "Enjoy daily expiries",
+    title: "Multi-asset virtual trading",
     description:
-      "Daily and weekly expiries create more tactical opportunities for short-term setups.",
+      "Explore virtual spot, futures, and options for BTC, ETH, and trending pairs without using real funds.",
   },
   {
-    title: "Do more with less",
+    title: "Learn risk management safely",
     description:
-      "Smart margin simulation lets you test advanced positions with efficient virtual capital.",
+      "Test leverage, stop-loss, and position sizing strategies in a zero-loss environment before going live elsewhere.",
   },
 ];
 
 const proFeatures = [
   {
-    title: "Basket Orders with Margin Benefits",
+    title: "Advanced order simulation",
     description:
-      "Bundle multiple virtual positions together and test margin offset behavior in one click.",
+      "Practice market, limit, stop-limit, and conditional orders to improve your speed and execution confidence.",
   },
   {
-    title: "Strategy Builder",
+    title: "Portfolio and PnL dashboard",
     description:
-      "Build and compare multi-leg futures and options strategies before going live.",
+      "Track virtual balance, open positions, realized and unrealized PnL, and performance trends in one place.",
   },
   {
-    title: "Deep OTM/ITM Strikes",
+    title: "Leaderboard and challenge mode",
     description:
-      "Practice with deep strike selections and short-duration setups to master execution.",
+      "Compete with other learners in virtual trading challenges and benchmark your skills against the community.",
   },
   {
-    title: "PnL Analytics",
+    title: "Strategy journaling and insights",
     description:
-      "Track returns, win rate, drawdown, and behavior insights in one clean dashboard.",
+      "Review each trade, identify mistakes, and build repeatable high-probability strategies with data-backed feedback.",
   },
 ];
 
 const faqItems = [
   {
-    question: "Is this virtual trading platform beginner friendly?",
+    question: "Is AlphaZ a real-money crypto exchange?",
     answer:
-      "Yes. It is designed for learners and active traders to practice execution, risk, and strategy without real-money pressure.",
+      "No. AlphaZ is a virtual trading platform built for learning. You trade with virtual funds only, so you can practice without financial risk.",
   },
-  { question: "Do I need to deposit money to start virtual trading?" },
-  { question: "Can I switch from virtual mode to live mode later?" },
+  {
+    question: "Do I need to deposit real money to start?",
+    answer:
+      "No real-money deposit is required. After sign-up, you receive virtual balance to begin practice trading immediately.",
+  },
+  {
+    question: "Who should use this platform?",
+    answer:
+      "AlphaZ is ideal for beginners, students, and active traders who want to improve strategy, risk management, and execution before entering real markets.",
+  },
 ];
 
 const footerColumns = [
@@ -83,11 +91,11 @@ const footerColumns = [
   },
   {
     title: "Information",
-    links: ["Contract Specs", "Trading Fees", "Settlement Prices", "Bug Bounty"],
+    links: ["Market Rules", "Virtual Trading Terms", "Learning Roadmap", "Bug Bounty"],
   },
   {
     title: "Resources",
-    links: ["API Docs", "Raise a Ticket", "Support Center", "Demo Trading"],
+    links: ["API Docs", "Raise a Ticket", "Support Center", "Trading Academy"],
   },
   {
     title: "Socials",
@@ -109,6 +117,8 @@ const mobileScreens = [
 import { useTheme } from "@/lib/theme";
 
 export default function Home() {
+  const [openFaqIndex, setOpenFaqIndex] = useState(0);
+
   return (
     <div
       className="min-h-screen bg-[var(--page-bg)] text-[var(--text-primary)] transition-colors duration-300"
@@ -118,24 +128,25 @@ export default function Home() {
           <div className="space-y-6">
             <span className="inline-flex items-center gap-2 rounded-full border border-[var(--line-accent)] bg-[var(--chip-bg)] px-4 py-2 text-xs font-semibold tracking-wide text-[var(--accent-soft)]">
               <span className="inline-block h-2 w-2 rounded-full bg-[#3ed87b]" />
-              Made for India
+              India-first virtual crypto trading platform
             </span>
             <h1 className="max-w-xl text-4xl font-bold leading-tight text-[var(--text-strong)] sm:text-5xl">
-              Trade Futures and Options on Bitcoin and Ether
+              Trade Like Binance and CoinDCX, With Virtual Money
             </h1>
             <p className="max-w-xl text-lg leading-7 text-[var(--text-muted)]">
-              Build confidence with a realistic virtual market setup, live-like order
-              flow, and 24/7 practice on crypto F&O instruments.
+              AlphaZ gives you a real exchange-like experience for spot, futures, and
+              options trading - but with virtual funds. Learn, practice, and build
+              confidence before risking real capital.
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <Link 
                 href="/signup"
                 className="rounded-lg bg-[var(--accent)] px-8 py-3 text-base font-semibold text-white transition hover:bg-[var(--accent-hover)]"
               >
-                Start Virtual Trading
+                Start Free Practice
               </Link>
               <button className="rounded-lg border border-[var(--line-soft)] bg-[var(--surface-1)] px-8 py-3 text-base font-medium text-[var(--text-soft)] transition hover:bg-[var(--surface-2)]">
-                View Demo
+                Explore Platform Demo
               </button>
             </div>
             <div className="pt-2 text-sm text-[var(--text-soft)]">
@@ -168,23 +179,23 @@ export default function Home() {
               </span>
               <div className="relative space-y-4">
                 <h2 className="text-7xl font-black leading-none text-[#2d1a09] sm:text-8xl">
-                  0
+                  100%
                   <span className="ml-2 text-5xl align-middle text-[#311400] sm:text-6xl">
-                    fee
+                    virtual
                   </span>
                 </h2>
                 <div className="grid gap-2 text-[#291304] sm:grid-cols-3">
                   <div className="rounded-lg bg-[#ffc785] px-3 py-2 text-center">
-                    <p className="text-xs font-bold tracking-wide">OPTIONS</p>
-                    <p className="text-sm font-black">0 Fee</p>
+                    <p className="text-xs font-bold tracking-wide">SPOT</p>
+                    <p className="text-sm font-black">Virtual Orders</p>
                   </div>
                   <div className="rounded-lg bg-[#ffc785] px-3 py-2 text-center">
                     <p className="text-xs font-bold tracking-wide">FUTURES</p>
-                    <p className="text-sm font-black">0 Exit Fee</p>
+                    <p className="text-sm font-black">Practice Leverage</p>
                   </div>
                   <div className="rounded-lg bg-[#ffc785] px-3 py-2 text-center">
-                    <p className="text-xs font-bold tracking-wide">SPOT</p>
-                    <p className="text-sm font-black">0 Entry Fee</p>
+                    <p className="text-xs font-bold tracking-wide">OPTIONS</p>
+                    <p className="text-sm font-black">Strategy Training</p>
                   </div>
                 </div>
               </div>
@@ -196,8 +207,8 @@ export default function Home() {
           <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[color:rgba(255,122,20,0.22)] text-[var(--accent)]">
             {"\u2713"}
           </span>
-          Pro-grade simulation platform with realistic orderbook behavior and
-          controlled risk learning.
+          Exchange-like trading simulation with zero real-money exposure and
+          structured learning for all levels.
         </section>
 
         <section className="mt-8 grid gap-4 rounded-xl border border-[var(--line-accent)] bg-[var(--benefits-bg)] p-4 text-center text-sm font-semibold text-[var(--accent-soft)] sm:grid-cols-3">
@@ -212,18 +223,19 @@ export default function Home() {
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wide text-[var(--accent-soft)]">
-                Designed to Delight Traders
+                Built for Serious Practice
               </p>
               <h2 className="mt-2 text-3xl font-bold text-[var(--text-strong)]">
-                Like F&O Trading, But Better
+                Real Trading Experience, Virtual Capital
               </h2>
               <p className="mt-3 max-w-2xl text-[var(--text-muted)]">
-                Familiar futures and options workflows with a cleaner interface and
-                more transparent trade simulation metrics.
+                We replicate the look and feel of major crypto exchanges so you can
+                train your decision-making, execution speed, and discipline without
+                risking real money.
               </p>
             </div>
             <span className="rounded-full border border-[var(--line-soft)] bg-[var(--surface-1)] px-4 py-2 text-xs font-semibold tracking-wide text-[var(--text-soft)]">
-              Crypto F&O vs Equity F&O
+              Virtual Money. Real Skills.
             </span>
           </div>
 
@@ -247,27 +259,27 @@ export default function Home() {
 
         <section className="mt-12 grid gap-0 overflow-hidden rounded-xl border border-[var(--line-soft)] bg-[var(--surface-1)] md:grid-cols-[0.85fr_1.15fr]">
           <div className="bg-[var(--surface-2)] p-7 sm:p-8">
-            <p className="text-sm font-semibold text-[var(--accent-soft)]">Easy Sign Up</p>
+            <p className="text-sm font-semibold text-[var(--accent-soft)]">Quick Onboarding</p>
             <h3 className="mt-2 text-3xl font-bold text-[var(--text-strong)]">
-              Start Practice in Minutes
+              Start Trading Practice in Minutes
             </h3>
             <p className="mt-3 text-sm leading-6 text-[var(--text-muted)]">
-              Master complex futures and options strategies without risking a single
-              dollar. Get instant access to $10,000 in virtual funds.
+              Join AlphaZ and get instant virtual funds. Build your strategy with
+              no financial pressure while experiencing real market-style workflows.
             </p>
             <Link 
               href="/signup"
               className="mt-7 inline-flex w-full items-center justify-center rounded-lg bg-[var(--accent)] px-4 py-3 text-base font-semibold text-white transition hover:bg-[var(--accent-hover)]"
             >
-              Sign Up
+              Create Free Account
             </Link>
           </div>
 
           <div className="grid gap-4 bg-[var(--surface-3)] p-7 sm:grid-cols-3 sm:p-8">
             {[
-              "Complete KYC verification in less than a minute",
-              "Link account and top-up your virtual balance instantly",
-              "Launch into practice mode with real market movement",
+              "Create your account and choose your learning track",
+              "Receive your virtual capital wallet instantly",
+              "Start spot, futures, and options simulation immediately",
             ].map((step, index) => (
               <div
                 key={step}
@@ -284,10 +296,10 @@ export default function Home() {
 
         <section className="mt-14">
           <p className="text-sm font-semibold uppercase tracking-wide text-[var(--accent-soft)]">
-            Best in Class
+            Core Platform Capabilities
           </p>
           <h2 className="mt-2 text-3xl font-bold text-[var(--text-strong)]">
-            Pro Trading Features For Everyone
+            Everything You Need to Learn Crypto Trading
           </h2>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             {proFeatures.map((feature) => (
@@ -313,8 +325,8 @@ export default function Home() {
           >
             <h3 className="text-3xl font-bold text-[var(--support-text-title)]">24x7 Customer Support</h3>
             <p className="mt-4 text-sm leading-6 text-[var(--support-text-desc)]">
-              Have a question? Our support center, live chat, and ticket desk are
-              available all day for strategy and platform help.
+              Need help with features, strategy practice, or platform navigation?
+              Our support desk is available 24x7 to guide your learning journey.
             </p>
             <button className="mt-8 rounded-lg border border-[var(--support-text-desc)]/20 bg-[var(--support-btn-bg)] px-5 py-2.5 text-sm font-semibold text-[var(--support-btn-text)] transition hover:bg-[var(--support-btn-hover)]">
               Raise a Support Ticket
@@ -331,15 +343,19 @@ export default function Home() {
                   key={item.question}
                   className="rounded-lg border border-[var(--line-soft)] bg-[var(--surface-3)] p-4"
                 >
-                  <div className="flex items-start justify-between gap-4">
+                  <button
+                    type="button"
+                    onClick={() => setOpenFaqIndex(index)}
+                    className="flex w-full items-start justify-between gap-4 text-left"
+                  >
                     <p className="text-sm font-semibold text-[var(--text-strong)]">
                       {item.question}
                     </p>
                     <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[var(--accent)] text-xs font-black text-white">
-                      {index === 0 ? "-" : "+"}
+                      {openFaqIndex === index ? "-" : "+"}
                     </span>
-                  </div>
-                  {item.answer ? (
+                  </button>
+                  {item.answer && openFaqIndex === index ? (
                     <p className="mt-3 text-sm leading-6 text-[var(--text-muted)]">
                       {item.answer}
                     </p>
@@ -353,41 +369,38 @@ export default function Home() {
         <section className="mt-14 grid items-center gap-8 rounded-2xl border border-[var(--line-soft)] bg-[var(--surface-1)] p-7 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <p className="text-sm font-semibold uppercase tracking-wide text-[var(--accent-soft)]">
-              Anytime, Anywhere
+              Android App In Progress
             </p>
             <h2 className="mt-2 text-3xl font-bold text-[var(--text-strong)]">
-              Download App, Trade On The Go
+              Current Build is a Debug Version
             </h2>
             <p className="mt-3 max-w-xl text-sm leading-6 text-[var(--text-muted)]">
-              Track charts, place virtual orders, and evaluate outcomes from mobile
-              with one synced account.
+              Our mobile app is currently under development. The screenshots shown
+              here are from our internal debug build for testing core trading flows.
+              You can download and test the latest debug APK from the link below.
             </p>
             <div className="mt-5 flex flex-wrap gap-2 text-sm">
-              <span className="rounded-md border border-[var(--line-soft)] bg-[var(--surface-3)] px-4 py-2">
-                Google Play
-              </span>
-              <span className="rounded-md border border-[var(--line-soft)] bg-[var(--surface-3)] px-4 py-2">
-                App Store
+              <a
+                href="https://drive.google.com/file/d/1oJUPjFT9a_UE1P0fDqS84VQz1C28c68U/view?usp=sharing"
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-md border border-[var(--line-soft)] bg-[var(--surface-3)] px-4 py-2 font-medium text-[var(--text-strong)] transition hover:bg-[var(--surface-2)]"
+              >
+                Download Debug APK
+              </a>
+              <span className="rounded-md border border-[var(--line-soft)] bg-[var(--surface-3)] px-4 py-2 text-[var(--text-muted)]">
+                Stable release coming soon
               </span>
             </div>
-            <div className="mt-6 inline-flex rounded-xl border border-[var(--line-soft)] p-3">
-              <div
-                className="rounded-md p-1.5"
-                style={{ backgroundColor: "var(--qr-shell)" }}
-              >
-                <div className="grid grid-cols-7 gap-1.5">
-                  {Array.from({ length: 49 }).map((_, index) => (
-                    <span
-                      key={index}
-                      className={`h-2.5 w-2.5 rounded-[2px] ${
-                        index % 2 === 0 || index % 5 === 0
-                          ? "bg-[var(--qr-dark)]"
-                          : "bg-[var(--qr-light)]"
-                      }`}
-                    />
-                  ))}
-                </div>
-              </div>
+            <div className="mt-6 rounded-xl border border-[var(--line-soft)] bg-[var(--surface-3)] p-4">
+              <p className="text-xs font-semibold uppercase tracking-wide text-[var(--accent-soft)]">
+                Build Status
+              </p>
+              <ul className="mt-3 space-y-2 text-sm text-[var(--text-muted)]">
+                <li>- Version: Internal debug APK</li>
+                <li>- Platform: Android testing build</li>
+                <li>- Access: Download from Google Drive link above</li>
+              </ul>
             </div>
           </div>
 
@@ -427,8 +440,8 @@ export default function Home() {
               </p>
             </div>
             <p className="mt-4 text-sm leading-6 text-[var(--text-muted)]">
-              India-first virtual crypto derivatives simulator for disciplined,
-              data-driven traders.
+              India-focused crypto trading simulator built to help beginners and
+              aspiring pros gain real-world market skills using virtual money.
             </p>
           </div>
           {footerColumns.map((column) => (
@@ -449,7 +462,7 @@ export default function Home() {
           ))}
         </div>
         <div className="border-t border-[var(--line-subtle)] py-5 text-center text-xs text-[var(--text-muted)]">
-          AlphaZ Exchange India (c) 2026. All rights reserved.
+          AlphaZ Exchange India (c) 2026. Virtual trading platform. No real-money trading.
         </div>
       </footer>
     </div>

@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
-import { useTheme } from "@/lib/theme";
 import api from "@/lib/api";
 import toast from "react-hot-toast";
 import { setCredentials } from "@/lib/redux/slices/authSlice";
@@ -132,10 +131,8 @@ export default function LoginPage() {
         </form>
 
         {/* Links */}
-        <div className="flex flex-wrap gap-x-5 gap-y-1.5 text-[12px] mt-5">
-          <Link href="/forgot-email" className="text-[var(--accent)] hover:underline">Forgot Email ID?</Link>
-          <Link href="/forgot-password" className="text-[var(--accent)] hover:underline">Forgot Password?</Link>
-          <Link href="/lost-2fa" className="text-[var(--accent)] hover:underline">Lost 2FA Token?</Link>
+        <div className="flex flex-wrap gap-x-5 gap-y-1.5 text-[12px] mt-5 text-[var(--text-muted)]">
+          <span>Account recovery and 2FA support will be available in upcoming releases.</span>
         </div>
 
         <div className="text-[12px] text-[var(--text-muted)] mt-5">
@@ -143,79 +140,43 @@ export default function LoginPage() {
         </div>
 
 
-        {/* App Store Links */}
+        {/* Debug App Link */}
         <div className="flex items-center gap-5 mt-10">
-          <span className="text-[10px] text-[var(--text-muted)] font-medium uppercase tracking-widest opacity-40">Download App</span>
-          <div className="flex gap-4">
-            <button className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.1 2.48-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .76-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.36 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-              </svg>
-            </button>
-            <button className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3.25 2.5a.75.75 0 0 0-.75.75v17.5c0 .414.336.75.75.75h1.5a.75.75 0 0 0 .75-.75V3.25a.75.75 0 0 0-.75-.75h-1.5zm10.75 0a.75.75 0 0 0-.75.75v17.5c0 .414.336.75.75.75h1.5a.75.75 0 0 0 .75-.75V3.25a.75.75 0 0 0-.75-.75h-1.5z" />
-                <path d="M19.75 2.5a.75.75 0 0 0-.75.75v17.5c0 .414.336.75.75.75h1.5a.75.75 0 0 0 .75-.75V3.25a.75.75 0 0 0-.75-.75h-1.5zM6.75 10.5c0-.414.336-.75.75-.75h4.5a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-.75.75h-4.5a.75.75 0 0 1-.75-.75v-3z" />
-              </svg>
-            </button>
-          </div>
+          <span className="text-[10px] text-[var(--text-muted)] font-medium uppercase tracking-widest opacity-40">Android Debug Build</span>
+          <a
+            href="https://drive.google.com/file/d/1oJUPjFT9a_UE1P0fDqS84VQz1C28c68U/view?usp=sharing"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-md border border-[var(--line-soft)] bg-[var(--surface-1)] px-3 py-2 text-[12px] font-medium text-[var(--text-primary)] transition hover:bg-[var(--surface-2)]"
+          >
+            Download Debug APK
+          </a>
         </div>
       </div>
 
-      {/* QR Code Section */}
+      {/* App Build Status Section */}
       <div className="hidden md:flex flex-col items-center">
-        <h2 className="text-[17px] font-medium text-[var(--text-strong)] mb-6 self-start">Quick Log In - Scan using App</h2>
+        <h2 className="text-[17px] font-medium text-[var(--text-strong)] mb-6 self-start">
+          App is Currently in Development
+        </h2>
         
-        <div className="relative bg-[var(--surface-2)] p-10 rounded-[6px] border border-[var(--line-soft)] shadow-xl group">
-          <div className="relative flex items-center gap-12">
-            {/* QR Frame */}
-            <div className="relative p-1 bg-[var(--qr-shell)] rounded-[2px] transform group-hover:scale-[1.01] transition-transform duration-500">
-              {/* Corner Accents */}
-              <div className="absolute -top-2.5 -left-2.5 w-8 h-8 border-t-2 border-l-2 border-[var(--accent)]"></div>
-              <div className="absolute -top-2.5 -right-2.5 w-8 h-8 border-t-2 border-r-2 border-[var(--accent)]"></div>
-              <div className="absolute -bottom-2.5 -left-2.5 w-8 h-8 border-b-2 border-l-2 border-[var(--accent)]"></div>
-              <div className="absolute -bottom-2.5 -right-2.5 w-8 h-8 border-b-2 border-r-2 border-[var(--accent)]"></div>
-              
-              <div className="grid grid-cols-7 gap-1 p-1">
-                {Array.from({ length: 49 }).map((_, i) => (
-                  <div 
-                    key={i} 
-                    className={`w-4 h-4 rounded-[1px] ${
-                      (i < 7 && (i % 7 === 0 || i % 7 === 6)) || 
-                      (i > 41 && (i % 7 === 0 || i % 7 === 6)) || 
-                      (i % 7 === 0 && (i < 7 || i > 41)) || 
-                      (i % 7 === 6 && (i < 7 || i > 41)) ||
-                      (i % 4 === 0)
-                        ? "bg-[var(--qr-dark)]" 
-                        : "bg-[var(--qr-light)]"
-                    }`}
-                  ></div>
-                ))}
-              </div>
-            </div>
-
-            {/* Phone Mockup */}
-            <div className="relative w-[120px] h-[220px] bg-[var(--surface-3)] rounded-[28px] border-[4px] border-[var(--line-soft)] shadow-2xl overflow-hidden flex flex-col items-center">
-              <div className="mt-2.5 w-10 h-1 bg-[var(--line-soft)] rounded-full"></div>
-              
-              <div className="mt-8 flex flex-col items-center justify-center">
-                <div className="w-14 h-14 border border-[var(--line-soft)] rounded-lg flex items-center justify-center relative bg-[var(--surface-4)]">
-                  {/* Scanner sight */}
-                  <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-[var(--text-muted)] opacity-20"></div>
-                  <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-[var(--text-muted)] opacity-20"></div>
-                  <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[var(--text-muted)] opacity-20"></div>
-                  <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-[var(--text-muted)] opacity-20"></div>
-                  
-                  <div className="w-12 h-0.5 bg-[var(--accent)] shadow-[0_0_10px_var(--accent)] opacity-80 animate-scan"></div>
-                </div>
-                <div className="mt-6 space-y-2 w-14 opacity-20">
-                  <div className="h-0.5 bg-[var(--text-primary)] rounded-full"></div>
-                  <div className="h-0.5 bg-[var(--text-primary)] rounded-full w-8"></div>
-                  <div className="h-0.5 bg-[var(--text-primary)] rounded-full w-10"></div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="w-full max-w-[420px] rounded-[6px] border border-[var(--line-soft)] bg-[var(--surface-2)] p-8 shadow-xl">
+          <p className="text-[11px] font-semibold uppercase tracking-wider text-[var(--accent-soft)]">
+            Build Status
+          </p>
+          <ul className="mt-4 space-y-2 text-[13px] leading-6 text-[var(--text-muted)]">
+            <li>- Current release is an internal debug APK</li>
+            <li>- Some features are actively under development</li>
+            <li>- 2FA and account recovery are not live yet</li>
+          </ul>
+          <a
+            href="https://drive.google.com/file/d/1oJUPjFT9a_UE1P0fDqS84VQz1C28c68U/view?usp=sharing"
+            target="_blank"
+            rel="noreferrer"
+            className="mt-6 inline-flex rounded-md border border-[var(--line-soft)] bg-[var(--surface-1)] px-4 py-2.5 text-[13px] font-medium text-[var(--text-primary)] transition hover:bg-[var(--surface-3)]"
+          >
+            Download Debug APK
+          </a>
         </div>
 
         <div className="mt-8 flex items-center gap-3.5 text-[12px] text-[var(--text-muted)] max-w-[340px]">
@@ -227,7 +188,7 @@ export default function LoginPage() {
             </svg>
           </div>
           <p className="leading-snug">
-            Scan with the <span className="text-[var(--text-primary)] border-b border-dotted border-[var(--text-muted)] cursor-help">latest</span> AlphaZ App to log in instantly.
+            Use the latest debug APK to test login and core trading flows while the production app is being finalized.
           </p>
         </div>
       </div>

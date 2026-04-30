@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
-import { useTheme } from "@/lib/theme";
 import api from "@/lib/api";
 import toast from "react-hot-toast";
 import { setCredentials } from "@/lib/redux/slices/authSlice";
@@ -53,7 +52,7 @@ export default function SignupPage() {
       {/* Signup Form Section */}
       <div className="w-full max-w-[400px] flex flex-col">
         <h1 className="text-[24px] font-semibold text-[var(--text-strong)] mb-2">Start Virtual Trading</h1>
-        <p className="text-[14px] text-[#3ed87b] font-medium mb-8">Get $10,000 in practice funds instantly.</p>
+        <p className="text-[14px] text-[#3ed87b] font-medium mb-8">Get $10,000 USD virtual funds instantly after signup.</p>
         
         <p className="text-[12px] text-[var(--text-muted)] mb-3 opacity-70">Sign Up with</p>
         
@@ -129,7 +128,7 @@ export default function SignupPage() {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
             </svg>
-            10% trading fees discount applied (Ref code: USER010)
+            $10,000 USD virtual trading balance will be added to your account.
           </div>
 
           <button 
@@ -159,14 +158,28 @@ export default function SignupPage() {
             </span>
           </label>
         </div>
+
+        <div className="mt-8 flex items-center gap-4">
+          <span className="text-[10px] text-[var(--text-muted)] font-medium uppercase tracking-widest opacity-40">
+            Android Debug Build
+          </span>
+          <a
+            href="https://drive.google.com/file/d/1oJUPjFT9a_UE1P0fDqS84VQz1C28c68U/view?usp=sharing"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-md border border-[var(--line-soft)] bg-[var(--surface-1)] px-3 py-2 text-[12px] font-medium text-[var(--text-primary)] transition hover:bg-[var(--surface-2)]"
+          >
+            Download Debug APK
+          </a>
+        </div>
       </div>
 
       {/* Benefits Section */}
       <div className="hidden md:flex flex-col gap-4 w-full max-w-[360px]">
         {[
           {
-            title: "Trade Futures and Options",
-            desc: "Unlock the potential of crypto directly with USD",
+            title: "Exchange-Like Virtual Trading",
+            desc: "Practice spot, futures, and options with real market-style workflows.",
             icon: (
               <div className="relative w-10 h-10 flex items-center justify-center bg-blue-500/10 rounded-lg border border-blue-500/20 flex-none">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2d9cfc" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -176,8 +189,8 @@ export default function SignupPage() {
             )
           },
           {
-            title: "Instant Deposits",
-            desc: "Deposit Instantly with secure and easy payment options.",
+            title: "$10,000 USD Virtual Funds",
+            desc: "Start immediately with virtual balance. No real-money deposit required.",
             icon: (
               <div className="relative w-10 h-10 flex items-center justify-center bg-orange-500/10 rounded-lg border border-orange-500/20 flex-none">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff6a00" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -187,8 +200,8 @@ export default function SignupPage() {
             )
           },
           {
-            title: "Pro-Grade Platform",
-            desc: "Experience a fully optimized simulation environment matching live market logic.",
+            title: "App in Active Development",
+            desc: "Current Android build is a debug APK for testing and early feedback.",
             icon: (
               <div className="relative w-10 h-10 flex items-center justify-center bg-green-500/10 rounded-lg border border-green-500/20 flex-none">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3ed87b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

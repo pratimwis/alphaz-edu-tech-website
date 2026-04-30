@@ -129,15 +129,15 @@ export default function OrderForm({ symbol, price }: OrderFormProps) {
   })() : null;
 
   return (
-    <div className="flex w-[300px] flex-col bg-[#0b121e] border-l border-[#1e2a3b] h-full overflow-hidden">
+    <div className="flex w-[300px] flex-col bg-[var(--surface-1)] border-l border-[var(--line-soft)] h-full overflow-hidden">
       {/* Side Tabs */}
-      <div className="flex border-b border-[#1e2a3b]">
+      <div className="flex border-b border-[var(--line-soft)]">
         <button
           onClick={() => setSide("long")}
           className={`flex-1 py-3 text-xs font-bold transition-all duration-300 ${
             side === "long" 
               ? "text-[#00c076] border-b-2 border-[#00c076] bg-[#00c0760a]" 
-              : "text-[#5f6f83] hover:text-[#8e97a8]"
+              : "text-[var(--text-muted)] hover:text-[var(--text-soft)]"
           }`}
         >
           Buy / Long
@@ -147,7 +147,7 @@ export default function OrderForm({ symbol, price }: OrderFormProps) {
           className={`flex-1 py-3 text-xs font-bold transition-all duration-300 ${
             side === "short" 
               ? "text-[#ff4d4d] border-b-2 border-[#ff4d4d] bg-[#ff4d4d0a]" 
-              : "text-[#5f6f83] hover:text-[#8e97a8]"
+              : "text-[var(--text-muted)] hover:text-[var(--text-soft)]"
           }`}
         >
           Sell / Short
@@ -158,25 +158,25 @@ export default function OrderForm({ symbol, price }: OrderFormProps) {
         
         {/* Active Position Indicator */}
         {activePosition && pnlData && (
-          <div className="rounded-lg bg-gradient-to-br from-[#1e2a3b] to-[#080d18] border border-[#1e2a3b] p-3 shadow-xl animate-in fade-in slide-in-from-top-2 duration-300">
+          <div className="rounded-lg bg-gradient-to-br from-[var(--surface-3)] to-[var(--surface-1)] border border-[var(--line-soft)] p-3 shadow-xl animate-in fade-in slide-in-from-top-2 duration-300">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                  <span className={`text-[10px] font-black px-1.5 py-0.5 rounded ${pnlData.isLong ? "bg-[#00c0761a] text-[#00c076]" : "bg-[#ff4d4d1a] text-[#ff4d4d]"}`}>
                     {pnlData.isLong ? "LONG" : "SHORT"}
                  </span>
-                 <span className="text-[11px] font-bold text-[#eef3ff]">{baseSymbol} <span className="text-[9px] text-[#5f6f83]">Active</span></span>
+                 <span className="text-[11px] font-bold text-[var(--text-strong)]">{baseSymbol} <span className="text-[9px] text-[var(--text-muted)]">Active</span></span>
               </div>
               <span className={`text-xs font-black ${pnlData.pnl >= 0 ? "text-[#00c076]" : "text-[#ff4d4d]"}`}>
                 {pnlData.pnl >= 0 ? "+" : ""}{pnlData.pnl.toFixed(2)} USD
               </span>
             </div>
             <div className="flex items-center justify-between text-[10px]">
-               <span className="text-[#5f6f83]">ROE%</span>
+               <span className="text-[var(--text-muted)]">ROE%</span>
                <span className={`font-bold ${pnlData.pnlPercent >= 0 ? "text-[#00c076]" : "text-[#ff4d4d]"}`}>
                  {pnlData.pnlPercent >= 0 ? "+" : ""}{pnlData.pnlPercent.toFixed(2)}%
                </span>
             </div>
-            <div className="mt-2 h-1 w-full bg-[#0b121e] rounded-full overflow-hidden">
+            <div className="mt-2 h-1 w-full bg-[var(--surface-1)] rounded-full overflow-hidden">
                <div 
                  className={`h-full transition-all duration-500 ${pnlData.pnl >= 0 ? "bg-[#00c076]" : "bg-[#ff4d4d]"}`} 
                  style={{ width: `${Math.min(Math.abs(pnlData.pnlPercent), 100)}%` }} 
@@ -186,12 +186,12 @@ export default function OrderForm({ symbol, price }: OrderFormProps) {
         )}
 
         {/* Leverage Selector */}
-        <div className="rounded-lg border border-[#1e2a3b] bg-[#141d2e] p-2.5">
+        <div className="rounded-lg border border-[var(--line-soft)] bg-[var(--surface-2)] p-2.5">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-medium text-[#5f6f83]">Leverage</span>
+            <span className="text-[11px] font-medium text-[var(--text-muted)]">Leverage</span>
             <div className="flex items-center gap-1 cursor-pointer">
               <span className="text-xs font-bold text-amber-500">{leverage}x</span>
-              <svg className="w-3 h-3 text-[#5f6f83]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3 h-3 text-[var(--text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </div>
@@ -199,15 +199,15 @@ export default function OrderForm({ symbol, price }: OrderFormProps) {
         </div>
 
         {/* Order Type Tabs */}
-        <div className="flex gap-4 border-b border-[#1e2a3b]/50">
+        <div className="flex gap-4 border-b border-[var(--line-soft)]/60">
           {["Limit", "Market", "Maker Only"].map((type) => (
             <button
               key={type}
               onClick={() => type !== "Maker Only" && setOrderType(type.toLowerCase() as any)}
               className={`pb-2 text-[11px] font-medium transition-all ${
                 (type.toLowerCase() === orderType || (type === "Maker Only" && orderType === "limit"))
-                  ? "text-white border-b-2 border-white -mb-[1px]" 
-                  : "text-[#5f6f83] hover:text-[#8e97a8]"
+                  ? "text-[var(--text-strong)] border-b-2 border-[var(--text-strong)] -mb-[1px]" 
+                  : "text-[var(--text-muted)] hover:text-[var(--text-soft)]"
               }`}
             >
               {type}
@@ -218,17 +218,17 @@ export default function OrderForm({ symbol, price }: OrderFormProps) {
         {/* Quantity Section */}
         <div className="space-y-2.5">
           <div className="flex justify-between items-center text-[11px]">
-            <span className="text-[#5f6f83] font-medium uppercase tracking-wider">Amount</span>
-            <div className="flex p-0.5 bg-[#080d18] border border-[#1e2a3b] rounded-md">
+            <span className="text-[var(--text-muted)] font-medium uppercase tracking-wider">Amount</span>
+            <div className="flex p-0.5 bg-[var(--surface-1)] border border-[var(--line-soft)] rounded-md">
               <button 
                 onClick={() => setUnit("lot")}
-                className={`px-2 py-0.5 rounded-[3px] text-[9px] font-bold transition-all duration-200 ${unit === "lot" ? "bg-[#1e2a3b] text-[#eef3ff] shadow-sm" : "text-[#5f6f83] hover:text-[#8e97a8]"}`}
+                className={`px-2 py-0.5 rounded-[3px] text-[9px] font-bold transition-all duration-200 ${unit === "lot" ? "bg-[var(--surface-3)] text-[var(--text-strong)] shadow-sm" : "text-[var(--text-muted)] hover:text-[var(--text-soft)]"}`}
               >
                 LOT
               </button>
               <button 
                 onClick={() => setUnit("coin")}
-                className={`px-2 py-0.5 rounded-[3px] text-[9px] font-bold transition-all duration-200 ${unit === "coin" ? "bg-[#1e2a3b] text-[#eef3ff] shadow-sm" : "text-[#5f6f83] hover:text-[#8e97a8]"}`}
+                className={`px-2 py-0.5 rounded-[3px] text-[9px] font-bold transition-all duration-200 ${unit === "coin" ? "bg-[var(--surface-3)] text-[var(--text-strong)] shadow-sm" : "text-[var(--text-muted)] hover:text-[var(--text-soft)]"}`}
               >
                 {baseSymbol}
               </button>
@@ -240,14 +240,14 @@ export default function OrderForm({ symbol, price }: OrderFormProps) {
               type="number"
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}
-              className="w-full bg-[#080d18] border border-[#1e2a3b] rounded-lg h-[44px] px-3.5 text-sm font-bold text-[#eef3ff] focus:outline-none focus:border-[#5f6f83] transition-all placeholder:text-[#1e2a3b]/50"
+              className="w-full bg-[var(--surface-1)] border border-[var(--line-soft)] rounded-lg h-[44px] px-3.5 text-sm font-bold text-[var(--text-strong)] focus:outline-none focus:border-[var(--text-muted)] transition-all placeholder:text-[var(--text-muted)]/40"
               placeholder="0.00"
             />
-            <div className="absolute right-3.5 top-1/2 -translate-y-1/2 flex items-center gap-1.5 border-l border-[#1e2a3b] pl-3">
-              <span className="text-[10px] font-black text-[#5f6f83] uppercase tracking-tighter">
+            <div className="absolute right-3.5 top-1/2 -translate-y-1/2 flex items-center gap-1.5 border-l border-[var(--line-soft)] pl-3">
+              <span className="text-[10px] font-black text-[var(--text-muted)] uppercase tracking-tighter">
                 {unit === "lot" ? "Lot" : baseSymbol}
               </span>
-              <svg className="w-2.5 h-2.5 text-[#1e2a3b] group-hover:text-[#5f6f83] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-2.5 h-2.5 text-[var(--line-soft)] group-hover:text-[var(--text-muted)] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
               </svg>
             </div>
@@ -255,9 +255,9 @@ export default function OrderForm({ symbol, price }: OrderFormProps) {
 
           {unit === "lot" && quantity && (
             <div className="flex items-center gap-1 justify-end">
-              <span className="text-[10px] text-[#5f6f83] italic">≈</span>
-              <span className="text-[10px] font-medium text-[#8e97a8]">{(parseFloat(quantity) / 1000).toFixed(6)}</span>
-              <span className="text-[10px] text-[#5f6f83]">{baseSymbol}</span>
+              <span className="text-[10px] text-[var(--text-muted)] italic">≈</span>
+              <span className="text-[10px] font-medium text-[var(--text-soft)]">{(parseFloat(quantity) / 1000).toFixed(6)}</span>
+              <span className="text-[10px] text-[var(--text-muted)]">{baseSymbol}</span>
             </div>
           )}
 
@@ -268,8 +268,8 @@ export default function OrderForm({ symbol, price }: OrderFormProps) {
                 key={pct}
                 className="group flex flex-col items-center gap-1"
               >
-                <div className="h-1 w-1 rounded-full bg-[#1e2a3b] group-hover:bg-[#5f6f83]" />
-                <span className="text-[9px] text-[#5f6f83]">{pct}%</span>
+                <div className="h-1 w-1 rounded-full bg-[var(--line-soft)] group-hover:bg-[var(--text-muted)]" />
+                <span className="text-[9px] text-[var(--text-muted)]">{pct}%</span>
               </button>
             ))}
           </div>
@@ -277,27 +277,27 @@ export default function OrderForm({ symbol, price }: OrderFormProps) {
 
         {/* Info & Execution */}
         <div className="mt-auto space-y-4">
-          <div className="space-y-2 border-t border-[#1e2a3b]/50 pt-4">
+          <div className="space-y-2 border-t border-[var(--line-soft)]/60 pt-4">
             <div className="flex justify-between text-[11px]">
-              <span className="text-[#5f6f83]">Funds req.</span>
-              <span className="text-[#8e97a8]">
+              <span className="text-[var(--text-muted)]">Funds req.</span>
+              <span className="text-[var(--text-soft)]">
                 ~{((price * (unit === "lot" ? (parseFloat(quantity) || 0) / 1000 : (parseFloat(quantity) || 0))) / leverage).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD
               </span>
             </div>
             
             <div className="flex justify-between text-[11px] items-center">
               <div className="flex items-center gap-1.5">
-                <span className="text-[#5f6f83]">Available Margin</span>
+                <span className="text-[var(--text-muted)]">Available Margin</span>
                 <button 
                   onClick={fetchBalance}
-                  className={`p-0.5 rounded hover:bg-[#1e2a3b] transition-colors ${balanceLoading ? 'animate-spin' : ''}`}
+                  className={`p-0.5 rounded hover:bg-[var(--surface-3)] transition-colors ${balanceLoading ? 'animate-spin' : ''}`}
                 >
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-[#5f6f83]">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--text-muted)]">
                     <path d="M23 4v6h-6" /><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
                   </svg>
                 </button>
               </div>
-              <span className={`font-bold transition-colors ${balanceLoading ? 'text-[#5f6f83]' : 'text-[#8e97a8]'}`}>
+              <span className={`font-bold transition-colors ${balanceLoading ? 'text-[var(--text-muted)]' : 'text-[var(--text-soft)]'}`}>
                 {balance === null ? "---" : balance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD
               </span>
             </div>
@@ -318,10 +318,10 @@ export default function OrderForm({ symbol, price }: OrderFormProps) {
       </div>
 
       {/* Footer Promo */}
-      <div className="p-4 border-t border-[#1e2a3b] bg-[#0b121e]">
-        <div className="rounded-lg bg-gradient-to-br from-[#141d2e] to-[#0b121e] p-3 border border-[#1e2a3b] hover:border-[#5f6f83]/30 transition-colors cursor-pointer">
+      <div className="p-4 border-t border-[var(--line-soft)] bg-[var(--surface-1)]">
+        <div className="rounded-lg bg-gradient-to-br from-[var(--surface-2)] to-[var(--surface-1)] p-3 border border-[var(--line-soft)] hover:border-[var(--text-muted)]/40 transition-colors cursor-pointer">
            <div className="flex items-center justify-between">
-              <p className="text-[11px] font-medium text-[#8e97a8]">
+              <p className="text-[11px] font-medium text-[var(--text-soft)]">
                 Save up to <span className="text-[#00c076]">50% on fees</span>
               </p>
               <svg className="w-4 h-4 text-[#00c076]" fill="none" stroke="currentColor" viewBox="0 0 24 24">

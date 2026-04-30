@@ -42,48 +42,48 @@ export default function TradePage() {
 
   if (!ticker && !prices[symbol]) {
     return (
-      <div className="flex h-[calc(100vh-64px)] items-center justify-center bg-[#080d18] text-white">
+      <div className="flex h-[calc(100vh-64px)] items-center justify-center bg-[var(--page-bg)] text-[var(--text-primary)]">
         <div className="flex flex-col items-center gap-4">
           <div className="h-12 w-12 animate-spin rounded-full border-4 border-[#ff7814] border-t-transparent"></div>
-          <p className="text-sm font-bold uppercase tracking-widest text-[#5f6f83]">Loading {symbol.replace("_", "")} Market...</p>
+          <p className="text-sm font-bold uppercase tracking-widest text-[var(--text-muted)]">Loading {symbol.replace("_", "")} Market...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#080d18] text-[var(--text-primary)]">
+    <div className="flex min-h-screen flex-col bg-[var(--page-bg)] text-[var(--text-primary)] transition-colors duration-300">
       <Toaster position="top-right" />
       
       {/* First View: Header + Trading Interface (Full Height) */}
-      <div className="flex h-[calc(100vh-64px)] flex-col border-b border-[#1e2a3b]">
+      <div className="flex h-[calc(100vh-64px)] flex-col border-b border-[var(--line-soft)]">
         <TradingHeader symbol={symbol} ticker={ticker} />
 
         <div className="flex flex-1 overflow-hidden">
           {/* Chart Section */}
-          <div className="flex-1 bg-[#080d18]">
+          <div className="flex-1 bg-[var(--page-bg)]">
             <TradingChart symbol={symbol} />
           </div>
 
           {/* Middle Section: Order Book & Recent Trades */}
-          <div className="flex w-72 flex-col border-l border-[#1e2a3b] bg-[#0b121e]">
+          <div className="flex w-72 flex-col border-l border-[var(--line-soft)] bg-[var(--surface-1)]">
             <div className="flex-[1.5] overflow-hidden">
               <OrderBook symbol={symbol} price={currentPrice} />
             </div>
-            <div className="flex-1 border-t border-[#1e2a3b] overflow-hidden">
+            <div className="flex-1 border-t border-[var(--line-soft)] overflow-hidden">
               <RecentTrades symbol={symbol} price={currentPrice} />
             </div>
           </div>
 
           {/* Right Section: Order Form */}
-          <div className="w-[300px] border-l border-[#1e2a3b]">
+          <div className="w-[300px] border-l border-[var(--line-soft)]">
             <OrderForm symbol={symbol} price={currentPrice} />
           </div>
         </div>
       </div>
 
       {/* Second View: Positions/Orders (Full Width, Below Scroll) */}
-      <div className="min-h-[500px] w-full bg-[#0b121e]">
+      <div className="min-h-[500px] w-full bg-[var(--surface-1)]">
         <div className="p-4">
           <TradeTabs />
         </div>

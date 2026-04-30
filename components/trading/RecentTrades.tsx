@@ -11,12 +11,12 @@ export default function RecentTrades({ symbol, price }: { symbol: string; price:
   }));
 
   return (
-    <div className="flex h-full flex-col bg-[#0b121e] border-t border-[#1e2a3b]">
-      <div className="flex h-10 items-center px-4 border-b border-[#1e2a3b]">
-        <span className="text-[11px] font-bold text-white">Recent Trades</span>
+    <div className="flex h-full flex-col bg-[var(--surface-1)] border-t border-[var(--line-soft)]">
+      <div className="flex h-10 items-center px-4 border-b border-[var(--line-soft)]">
+        <span className="text-[11px] font-bold text-[var(--text-strong)]">Recent Trades</span>
       </div>
 
-      <div className="flex h-8 items-center px-4 text-[10px] font-medium text-[#5f6f83]">
+      <div className="flex h-8 items-center px-4 text-[10px] font-medium text-[var(--text-muted)]">
         <span className="flex-1">Price (USD)</span>
         <span className="w-16 text-right">Size</span>
         <span className="w-16 text-right">Time</span>
@@ -28,8 +28,8 @@ export default function RecentTrades({ symbol, price }: { symbol: string; price:
             <span className={`flex-1 font-bold tracking-tight ${trade.side === "buy" ? "text-[#00c076]" : "text-[#ff4d4d]"}`}>
               {trade.price.toLocaleString(undefined, { minimumFractionDigits: 1 })}
             </span>
-            <span className="w-16 text-right font-medium text-[#c2cad9]">{trade.size.toFixed(3)}</span>
-            <span className="w-16 text-right font-medium text-[#5f6f83]">{trade.time}</span>
+            <span className="w-16 text-right font-medium text-[var(--text-soft)]">{trade.size.toFixed(3)}</span>
+            <span className="w-16 text-right font-medium text-[var(--text-muted)]">{trade.time}</span>
           </div>
         ))}
       </div>

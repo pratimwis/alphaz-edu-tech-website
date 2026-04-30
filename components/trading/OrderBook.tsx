@@ -38,20 +38,20 @@ export default function OrderBook({ symbol, price }: OrderBookProps) {
   const maxTotal = Math.max(askTotal, bidTotal);
 
   return (
-    <div className="flex h-full flex-col bg-[#0b121e]">
-      <div className="flex h-10 items-center justify-between border-b border-[#1e2a3b] px-4">
-        <span className="text-[11px] font-bold text-white">Order Book</span>
+    <div className="flex h-full flex-col bg-[var(--surface-1)]">
+      <div className="flex h-10 items-center justify-between border-b border-[var(--line-soft)] px-4">
+        <span className="text-[11px] font-bold text-[var(--text-strong)]">Order Book</span>
         <div className="flex gap-2">
-          <div className="flex items-center gap-1 rounded bg-[#1e2a3b] px-1.5 py-0.5">
-            <span className="text-[10px] font-medium text-[#5f6f83]">0.5</span>
-            <svg className="h-2 w-2 text-[#5f6f83]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="flex items-center gap-1 rounded bg-[var(--surface-3)] px-1.5 py-0.5">
+            <span className="text-[10px] font-medium text-[var(--text-muted)]">0.5</span>
+            <svg className="h-2 w-2 text-[var(--text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
             </svg>
           </div>
         </div>
       </div>
 
-      <div className="flex h-8 items-center px-4 text-[10px] font-medium text-[#5f6f83]">
+      <div className="flex h-8 items-center px-4 text-[10px] font-medium text-[var(--text-muted)]">
         <span className="flex-1">Price (USD)</span>
         <span className="w-16 text-right">Size</span>
         <span className="w-16 text-right">Total</span>
@@ -67,17 +67,17 @@ export default function OrderBook({ symbol, price }: OrderBookProps) {
                 style={{ width: `${(ask.total / maxTotal) * 100}%` }}
               />
               <span className="flex-1 font-bold tracking-tight text-[#ff4d4d]">{ask.price.toLocaleString(undefined, { minimumFractionDigits: 1 })}</span>
-              <span className="relative w-16 text-right font-medium text-[#c2cad9]">{ask.size.toFixed(3)}</span>
-              <span className="relative w-16 text-right font-medium text-[#c2cad9]">{ask.total.toFixed(3)}</span>
+              <span className="relative w-16 text-right font-medium text-[var(--text-soft)]">{ask.size.toFixed(3)}</span>
+              <span className="relative w-16 text-right font-medium text-[var(--text-soft)]">{ask.total.toFixed(3)}</span>
             </div>
           ))}
         </div>
 
         {/* Spread / Current Price */}
-        <div className="my-1.5 flex h-10 items-center border-y border-[#1e2a3b] bg-[#141d2e] px-4 shadow-inner">
+        <div className="my-1.5 flex h-10 items-center border-y border-[var(--line-soft)] bg-[var(--surface-2)] px-4 shadow-inner">
           <span className="text-sm font-black tracking-tight text-[#00c076]">${price.toLocaleString()}</span>
           <div className="ml-auto flex items-center gap-2">
-             <span className="text-[10px] font-bold text-[#5f6f83] tracking-tighter">${(price * 1.0001).toFixed(1)}</span>
+             <span className="text-[10px] font-bold text-[var(--text-muted)] tracking-tighter">${(price * 1.0001).toFixed(1)}</span>
              <svg className="h-3 w-3 text-[#00c076]" fill="currentColor" viewBox="0 0 24 24">
                <path d="M7 14l5-5 5 5H7z" />
              </svg>
@@ -93,8 +93,8 @@ export default function OrderBook({ symbol, price }: OrderBookProps) {
                 style={{ width: `${(bid.total / maxTotal) * 100}%` }}
               />
               <span className="flex-1 font-bold tracking-tight text-[#00c076]">{bid.price.toLocaleString(undefined, { minimumFractionDigits: 1 })}</span>
-              <span className="relative w-16 text-right font-medium text-[#c2cad9]">{bid.size.toFixed(3)}</span>
-              <span className="relative w-16 text-right font-medium text-[#c2cad9]">{bid.total.toFixed(3)}</span>
+              <span className="relative w-16 text-right font-medium text-[var(--text-soft)]">{bid.size.toFixed(3)}</span>
+              <span className="relative w-16 text-right font-medium text-[var(--text-soft)]">{bid.total.toFixed(3)}</span>
             </div>
           ))}
         </div>
