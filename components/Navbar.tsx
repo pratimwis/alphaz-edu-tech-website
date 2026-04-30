@@ -89,11 +89,11 @@ export default function Navbar() {
             <span className="inline-flex h-8 w-8 items-center justify-center rounded-sm bg-gradient-to-br from-amber-400 to-orange-500 text-xs font-black text-[#081018]">
               A
             </span>
-            <div>
+            <div className="flex flex-col justify-center">
               <p className="text-xs font-bold tracking-wide text-[var(--text-strong)] uppercase">
                 AlphaZ Arena
               </p>
-              <p className="text-[10px] text-[var(--text-muted)] leading-tight">
+              <p className="mt-0.5 inline-flex w-fit self-center items-center rounded-sm border border-[var(--line-accent)] bg-[var(--chip-bg)] px-1.5 py-[1px] text-[10px] leading-tight font-black tracking-wide text-[var(--accent)]">
                 Virtual Trading
               </p>
             </div>

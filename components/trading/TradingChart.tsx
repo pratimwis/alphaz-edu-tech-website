@@ -134,7 +134,7 @@ function TradingChart({ symbol = "BTC_USDT" }: { symbol?: string }) {
       {/* PNL Indicator Overlay (Mobile Style) */}
       {activePosition && currentPrice > 0 && (
         <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-[100] pointer-events-none">
-          <div className="absolute inset-x-0 top-1/2 h-[1px] -translate-y-1/2 border-t border-dashed border-[#3b82f6] opacity-50" />
+          <div className="absolute inset-x-0 top-1/2 h-[3px] -translate-y-1/2 border-t-[3px] border-dashed border-[#3b82f6] opacity-100" />
           <div className="absolute right-12 top-1/2 -translate-y-1/2 flex items-center pointer-events-auto">
             <div className="flex items-center overflow-hidden rounded bg-[var(--surface-2)] border border-[#3b82f666] shadow-2xl">
               <div className="flex items-center gap-1.5 px-2 py-1.5 bg-[#3b82f6] text-white text-[11px] font-bold">
