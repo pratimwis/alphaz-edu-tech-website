@@ -6,6 +6,7 @@ import { socketService } from "@/lib/socket";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 const tabs = [
   "Positions",
@@ -94,6 +95,27 @@ export default function TradeTabs() {
       return acc + pnl;
     }, 0);
   }, [positions, prices]);
+
+  if (!isAuthenticated) {
+    return (
+      <div className="flex h-full min-h-[220px] items-center justify-center rounded-lg border border-[var(--line-soft)] bg-[var(--surface-1)] px-6 py-10">
+        <div className="text-center">
+          <p className="text-sm font-semibold text-[var(--text-strong)]">
+            Log in to view positions and order history
+          </p>
+          <p className="mt-2 text-xs text-[var(--text-muted)]">
+            Position holding details are available only for signed-in users.
+          </p>
+          <Link
+            href="/login"
+            className="mt-4 inline-flex rounded-md bg-[var(--accent)] px-4 py-2 text-xs font-semibold text-white transition hover:bg-[var(--accent-hover)]"
+          >
+            Go to Login
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex h-full flex-col bg-[var(--surface-1)]">

@@ -10,7 +10,6 @@ import { logout } from "@/lib/redux/slices/authSlice";
 import { useTheme } from "@/lib/theme";
 import { socketService } from "@/lib/socket";
 import WalletDropdown from "./WalletDropdown";
-import ProfileModal from "./ProfileModal";
 
 function SunIcon() {
   return (
@@ -35,7 +34,6 @@ export default function Navbar() {
   const user = useSelector((state: RootState) => state.auth.user);
   const accessToken = useSelector((state: RootState) => state.auth.accessToken);
   const [showWallet, setShowWallet] = useState(false);
-  const [showProfile, setShowProfile] = useState(false);
 
   useEffect(() => {
     if (accessToken) {
@@ -74,13 +72,19 @@ export default function Navbar() {
             {[
               { name: "Markets", href: "/futures" },
               { name: "Futures", href: "/futures" },
-              { name: "Options", href: "/options" },
-              { name: "Virtual Arena", href: "/futures" },
-              { name: "Algo Hub", href: "#" },
+              { name: "Options", href: "#", wip: true },
+              { name: "Virtual Arena", href: "#", wip: true },
+              { name: "Algo Hub", href: "#", wip: true },
             ].map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
+                onClick={(e) => {
+                  if ((link as any).wip) {
+                    e.preventDefault();
+                    toast("Work in progress. Coming soon.");
+                  }
+                }}
                 className={`inline-flex h-9 items-center justify-center rounded-md px-4 text-sm font-medium opacity-100 transition hover:bg-[var(--surface-2)] ${
                   isDark
                     ? "text-[var(--text-soft)] hover:text-[var(--text-strong)]"
@@ -148,9 +152,9 @@ export default function Navbar() {
 
               <div className="w-[1px] h-6 bg-[var(--line-soft)] mx-1" />
 
-              {/* Profile Dropdown Trigger */}
+              {/* Portfolio Screen Trigger */}
               <div
-                onClick={() => setShowProfile(true)}
+                onClick={() => router.push("/portfolio")}
                 className="flex items-center gap-2 pl-2 group cursor-pointer"
               >
                 <div className="w-8 h-8 rounded-full bg-[var(--surface-3)] border border-[var(--accent)] flex items-center justify-center text-[var(--accent)] font-bold text-xs shadow-inner group-hover:scale-105 transition-transform">
@@ -158,13 +162,16 @@ export default function Navbar() {
                 </div>
                 <div className="hidden xl:flex flex-col">
                   <span className="text-xs font-bold text-[var(--text-strong)] leading-none group-hover:text-[var(--accent)] transition-colors">{user.email.split('@')[0]}</span>
-                  <span className="text-[10px] text-[var(--text-muted)] mt-0.5">Verified Account</span>
+                  <span className="text-[10px] text-[var(--text-muted)] mt-0.5">Portfolio</span>
                 </div>
               </div>
 
-              {showProfile && (
-                <ProfileModal user={user} onClose={() => setShowProfile(false)} />
-              )}
+              <button
+                onClick={handleLogout}
+                className="h-9 px-3 flex items-center justify-center rounded-md border border-[var(--line-soft)] bg-[var(--surface-1)] text-xs font-bold text-[#ff4d4d] hover:bg-[#ff4d4d] hover:text-white transition-all"
+              >
+                Logout
+              </button>
             </div>
           ) : (
             <div className="flex items-center gap-2">
