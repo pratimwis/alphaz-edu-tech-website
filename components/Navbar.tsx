@@ -10,6 +10,7 @@ import { logout } from "@/lib/redux/slices/authSlice";
 import { useTheme } from "@/lib/theme";
 import { socketService } from "@/lib/socket";
 import WalletDropdown from "./WalletDropdown";
+import api from "@/lib/api";
 
 function SunIcon() {
   return (
@@ -34,6 +35,7 @@ export default function Navbar() {
   const user = useSelector((state: RootState) => state.auth.user);
   const accessToken = useSelector((state: RootState) => state.auth.accessToken);
   const [showWallet, setShowWallet] = useState(false);
+  const [wallet, setWallet] = useState<any>(null);
 
   useEffect(() => {
     if (accessToken) {
@@ -41,6 +43,35 @@ export default function Navbar() {
     } else {
       socketService.disconnect();
     }
+  }, [accessToken]);
+
+  useEffect(() => {
+    const fetchWallet = async () => {
+      if (!accessToken) {
+        setWallet(null);
+        return;
+      }
+      try {
+        const response = await api.get("/wallet");
+        if (response.data?.success) {
+          setWallet(response.data.data);
+        }
+      } catch (error) {
+        console.error("Failed to fetch wallet for navbar:", error);
+      }
+    };
+
+    fetchWallet();
+
+    const socket = socketService.getSocket();
+    const handleUpdate = () => fetchWallet();
+    socket.on("portfolio_update", handleUpdate);
+    socket.on("position_update", handleUpdate);
+
+    return () => {
+      socket.off("portfolio_update", handleUpdate);
+      socket.off("position_update", handleUpdate);
+    };
   }, [accessToken]);
 
   const handleLogout = () => {
@@ -115,7 +146,9 @@ export default function Navbar() {
                 >
                   <div className="flex flex-col items-end">
                     <span className="text-[10px] text-[var(--text-muted)] font-semibold uppercase leading-none">Virtual Balance</span>
-                    <span className="text-xs font-bold text-[#3ed87b]">$10,000.00</span>
+                    <span className="text-xs font-bold text-[#3ed87b]">
+                      ${Number((wallet?.balanceUsd || 0) + (wallet?.futuresBalanceUsd || 0)).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    </span>
                   </div>
                   <svg className={`w-3 h-3 text-[var(--text-muted)] transition-transform duration-200 ${showWallet ? 'rotate-180 text-[var(--accent)]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />

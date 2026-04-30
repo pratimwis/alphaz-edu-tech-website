@@ -133,28 +133,28 @@ function TradingChart({ symbol = "BTC_USDT" }: { symbol?: string }) {
 
       {/* PNL Indicator Overlay (Mobile Style) */}
       {activePosition && currentPrice > 0 && (
-        <div className="absolute right-12 top-1/2 -translate-y-1/2 z-[100] pointer-events-none">
-           <div className="flex items-center pointer-events-auto">
-              <div className="w-8 h-[1px] bg-[#3b82f6] border-t border-dashed opacity-50"></div>
-              <div className="flex items-center overflow-hidden rounded bg-[var(--surface-2)] border border-[#3b82f666] shadow-2xl">
-                 <div className="flex items-center gap-1.5 px-2 py-1.5 bg-[#3b82f6] text-white text-[11px] font-bold">
-                    <span>{(activePosition.quantity * 1000).toFixed(0)}</span>
-                 </div>
-                 <div className="flex items-center gap-2 px-3 py-1.5 min-w-[100px]">
-                    <span className={`text-[11px] font-black ${pnlData.pnl >= 0 ? "text-[#00c076]" : "text-[#ff4d4d]"}`}>
-                      {pnlData.pnl >= 0 ? "+" : ""}{pnlData.pnl.toFixed(2)} USD
-                    </span>
-                    <button 
-                      onClick={handleClosePosition}
-                      className="ml-1 text-[var(--text-muted)] hover:text-[var(--text-strong)] transition-colors p-1"
-                    >
-                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
-                      </svg>
-                    </button>
-                 </div>
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-[100] pointer-events-none">
+          <div className="absolute inset-x-0 top-1/2 h-[1px] -translate-y-1/2 border-t border-dashed border-[#3b82f6] opacity-50" />
+          <div className="absolute right-12 top-1/2 -translate-y-1/2 flex items-center pointer-events-auto">
+            <div className="flex items-center overflow-hidden rounded bg-[var(--surface-2)] border border-[#3b82f666] shadow-2xl">
+              <div className="flex items-center gap-1.5 px-2 py-1.5 bg-[#3b82f6] text-white text-[11px] font-bold">
+                <span>{(activePosition.quantity * 1000).toFixed(0)}</span>
               </div>
-           </div>
+              <div className="flex items-center gap-2 px-3 py-1.5 min-w-[100px]">
+                <span className={`text-[11px] font-black ${pnlData.pnl >= 0 ? "text-[#00c076]" : "text-[#ff4d4d]"}`}>
+                  {pnlData.pnl >= 0 ? "+" : ""}{pnlData.pnl.toFixed(2)} USD
+                </span>
+                <button 
+                  onClick={handleClosePosition}
+                  className="ml-1 text-[var(--text-muted)] hover:text-[var(--text-strong)] transition-colors p-1"
+                >
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       )}
 

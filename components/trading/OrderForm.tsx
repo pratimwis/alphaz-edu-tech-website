@@ -318,18 +318,16 @@ export default function OrderForm({ symbol, price }: OrderFormProps) {
       </div>
 
       {/* Footer Promo */}
-      <div className="p-4 border-t border-[var(--line-soft)] bg-[var(--surface-1)]">
+      {/* <div className="p-4 border-t border-[var(--line-soft)] bg-[var(--surface-1)]">
         <div className="rounded-lg bg-gradient-to-br from-[var(--surface-2)] to-[var(--surface-1)] p-3 border border-[var(--line-soft)] hover:border-[var(--text-muted)]/40 transition-colors cursor-pointer">
            <div className="flex items-center justify-between">
-              <p className="text-[11px] font-medium text-[var(--text-soft)]">
-                Save up to <span className="text-[#00c076]">50% on fees</span>
-              </p>
+             
               <svg className="w-4 h-4 text-[#00c076]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
            </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

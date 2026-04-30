@@ -29,6 +29,14 @@ export default function WalletDropdown({ onClose }: WalletDropdownProps) {
     fetchWallet();
   }, []);
 
+  const spotAvailable = Number(wallet?.balanceUsd || 0);
+  const spotLocked = Number(wallet?.investedUsd || 0);
+  const spotTotal = spotAvailable + spotLocked;
+
+  const futuresAvailable = Number(wallet?.futuresBalanceUsd || 0);
+  const futuresLocked = Number(wallet?.futuresInvestedUsd || 0);
+  const futuresTotal = futuresAvailable + futuresLocked;
+
   const handleTransfer = async () => {
     if (!transferAmount || isNaN(Number(transferAmount))) {
       toast.error("Please enter a valid amount");
@@ -72,13 +80,25 @@ export default function WalletDropdown({ onClose }: WalletDropdownProps) {
           <div className="p-3 rounded-lg bg-[var(--surface-2)] border border-[var(--line-soft)]">
             <p className="text-[10px] text-[var(--text-muted)] uppercase font-bold tracking-wider">Spot Wallet</p>
             <p className="text-sm font-black text-[var(--text-strong)] mt-1">
-              ${(wallet?.balanceUsd || 0).toLocaleString(undefined, { minimumFractionDigits: 2 })}
+              ${spotAvailable.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+            </p>
+            <p className="mt-1 text-[10px] text-[var(--text-muted)]">
+              Locked: ${spotLocked.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+            </p>
+            <p className="text-[10px] text-[var(--text-soft)] font-semibold">
+              Total: ${spotTotal.toLocaleString(undefined, { minimumFractionDigits: 2 })}
             </p>
           </div>
           <div className="p-3 rounded-lg bg-[var(--surface-2)] border border-[var(--line-soft)]">
             <p className="text-[10px] text-[var(--text-muted)] uppercase font-bold tracking-wider">Futures Wallet</p>
             <p className="text-sm font-black text-[#3ed87b] mt-1">
-              ${(wallet?.futuresBalanceUsd || 0).toLocaleString(undefined, { minimumFractionDigits: 2 })}
+              ${futuresAvailable.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+            </p>
+            <p className="mt-1 text-[10px] text-[var(--text-muted)]">
+              Locked: ${futuresLocked.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+            </p>
+            <p className="text-[10px] text-[var(--text-soft)] font-semibold">
+              Total: ${futuresTotal.toLocaleString(undefined, { minimumFractionDigits: 2 })}
             </p>
           </div>
         </div>
@@ -112,7 +132,7 @@ export default function WalletDropdown({ onClose }: WalletDropdownProps) {
               className="w-full h-10 bg-[var(--surface-3)] border border-[var(--line-soft)] rounded-md px-3 text-xs text-[var(--text-strong)] focus:outline-none focus:border-[var(--accent)] transition-colors"
             />
             <button 
-              onClick={() => setTransferAmount((activeTab === 'spot' ? wallet?.balanceUsd : wallet?.futuresBalanceUsd)?.toString() || "0")}
+              onClick={() => setTransferAmount((activeTab === 'spot' ? spotAvailable : futuresAvailable).toString() || "0")}
               className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-bold text-[var(--accent)]"
             >
               MAX
